@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"path"
+	"path/filepath"
+	"runtime"
 	"time"
 
 	"github.com/fatih/color"
@@ -20,9 +23,16 @@ func newReplica(path string) *replica {
 	}
 }
 
+func (r *replica) printAscii() {
+	for i, line := range r.readAscii() {
+		r.randomize(line, i)
+	}
+}
+
 func (r *replica) readAscii() []string {
 	lines := []string{}
-	file, err := os.Open(r.asciiPath)
+
+	file, err := os.Open(r.getAsciiFilePath())
 	if err != nil {
 		return append(lines, "invalid file :(")
 	}
@@ -37,10 +47,12 @@ func (r *replica) readAscii() []string {
 	return lines
 }
 
-func (r *replica) printAscii() {
-	for i, line := range r.readAscii() {
-		r.randomize(line, i)
+func (r *replica) getAsciiFilePath() string {
+	_, filename, _, ok := runtime.Caller(4)
+	if !ok {
+		panic("No caller information")
 	}
+	return filepath.Join(path.Dir(filename), r.asciiPath)
 }
 
 func (r *replica) randomize(str string, ind int) {
