@@ -17,7 +17,7 @@ type Mainframe struct {
 	replica   *replica.Replica
 }
 
-func NewMainframe(asciiArt []string, defaultMessage string) *Mainframe {
+func NewMainframe(asciiArt string, defaultMessage string) *Mainframe {
 	return &Mainframe{
 		bubble:    bubbles.NewBubble(defaultMessage),
 		collector: collector.NewTextCollector(),

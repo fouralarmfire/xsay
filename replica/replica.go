@@ -1,8 +1,10 @@
 package replica
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 
 	"github.com/fatih/color"
@@ -12,9 +14,9 @@ type Replica struct {
 	asciiArt []string
 }
 
-func NewReplica(aa []string) *Replica {
+func NewReplica(path string) *Replica {
 	return &Replica{
-		asciiArt: aa,
+		asciiArt: readAscii(path),
 	}
 }
 
@@ -22,6 +24,23 @@ func (i *Replica) Print() {
 	for i, line := range i.asciiArt {
 		randomize(line, i)
 	}
+}
+
+func readAscii(path string) []string {
+	lines := []string{}
+	file, err := os.Open(path)
+	if err != nil {
+		return append(lines, "invalid file :(")
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	return lines
 }
 
 func randomize(str string, ind int) {
