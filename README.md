@@ -11,52 +11,48 @@ go get github.com/fouralarmfire/xsay # will error but it's NBD
 
 Put something like this in your own package:
 
+main.go
 ```
 package main
 
 import (
   "fmt"
 
-  xsaypkg "github.com/fouralarmfire/xsay/mainframe"
+  "github.com/fouralarmfire/xsay"
 )
 
 func main() {
-  me := xsaypkg.NewMainframe(myAscii(), defaultMessage())
+  x := xsay.New("woohoo.txt", "WOOHOO!")
 
   fmt.Print("\n")
-  me.Say()
+  x.Say()
   fmt.Print("\n")
 }
+```
 
-func myAscii() []string {
-  return []string{
-    "            \\",
-    "              ¶¶¶¶¶¶¶¶",
-    "         ¶¶¶¶¶        ¶¶¶¶¶",
-    "       ¶¶¶                 ¶¶¶",
-    "     ¶¶¶                     ¶¶¶",
-    "    ¶¶                         ¶¶",
-    "   ¶       ¶¶¶     ¶¶¶          ¶¶",
-    "  ¶          ¶¶      ¶¶          ¶¶",
-    " ¶¶           ¶¶      ¶¶         ¶¶",
-    " ¶             ¶¶      ¶¶   ¶¶¶   ¶¶",
-    "¶¶      ¶¶     ¶¶      ¶¶     ¶¶  ¶¶",
-    "¶¶    ¶¶¶      ¶¶      ¶¶      ¶¶ ¶¶",
-    "¶¶   ¶¶¶¶¶                  ¶¶ ¶¶ ¶¶",
-    " ¶   ¶¶  ¶¶                 ¶¶    ¶¶",
-    " ¶¶       ¶¶              ¶¶¶    ¶¶",
-    "  ¶¶       ¶¶            ¶¶¶     ¶¶",
-    "   ¶¶        ¶¶¶¶     ¶¶¶¶      ¶¶",
-    "    ¶¶          ¶¶¶¶¶¶¶        ¶¶",
-    "      ¶¶                     ¶¶",
-    "        ¶¶¶               ¶¶¶",
-    "           ¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶",
-  }
-}
-
-func defaultMessage() string {
-  return "WOOHOO!"
-}
+woohoo.txt
+```
+                \
+                  ¶¶¶¶¶¶¶¶
+             ¶¶¶¶¶        ¶¶¶¶¶
+           ¶¶¶                 ¶¶¶
+         ¶¶¶                     ¶¶¶
+        ¶¶                         ¶¶
+       ¶       ¶¶¶     ¶¶¶          ¶¶
+      ¶          ¶¶      ¶¶          ¶¶
+     ¶¶           ¶¶      ¶¶         ¶¶
+     ¶             ¶¶      ¶¶   ¶¶¶   ¶¶
+    ¶¶      ¶¶     ¶¶      ¶¶     ¶¶  ¶¶
+    ¶¶    ¶¶¶      ¶¶      ¶¶      ¶¶ ¶¶
+    ¶¶   ¶¶¶¶¶                  ¶¶ ¶¶ ¶¶
+     ¶   ¶¶  ¶¶                 ¶¶    ¶¶
+     ¶¶       ¶¶              ¶¶¶    ¶¶
+      ¶¶       ¶¶            ¶¶¶     ¶¶
+       ¶¶        ¶¶¶¶     ¶¶¶¶      ¶¶
+        ¶¶          ¶¶¶¶¶¶¶        ¶¶
+          ¶¶                     ¶¶
+            ¶¶¶               ¶¶¶
+               ¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 ```
 
 Build and run for non-stop fun.
